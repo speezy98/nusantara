@@ -17,7 +17,7 @@
 #  Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
-FROM nginx:1.21.3
+FROM nginx:1.25
 
 RUN apt-get update && apt-get install -y curl
 
@@ -44,6 +44,6 @@ RUN mkdir -p /www/certs/
 
 USER www-data
 
-HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail -k https://127.0.0.1:${INTERFACE_HTTPS_PORT:-8443} || exit 1
+HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail -k https://127.0.0.1:${INTERFACE_HTTPS_PORT:-443} || exit 1
 
 ENTRYPOINT ["/entrypoint.sh"]
